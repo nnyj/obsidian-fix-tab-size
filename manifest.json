@@ -1,0 +1,9 @@
+{
+  "id": "fix-tab-size",
+  "name": "Fix Tab Size",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Fixes list indentation to respect the tab size setting.",
+  "author": "nnyj",
+  "isDesktopOnly": false
+}
