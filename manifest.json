@@ -1,6 +1,6 @@
 {
-  "id": "fix-tab-size",
-  "name": "Fix Tab Size",
+  "id": "fix-tab-size-local",
+  "name": "Fix Tab Size (Local)",
   "version": "1.0.0",
   "minAppVersion": "1.0.0",
   "description": "Fixes list indentation to respect the tab size setting.",
