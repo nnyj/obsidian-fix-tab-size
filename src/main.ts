@@ -19,14 +19,13 @@ export default class FixTabSize extends Plugin {
     this.patched = true;
 
     const editMode = (leaf.view as unknown as { editMode: EditMode }).editMode;
-    // monkey-patch 3-deep prototype — unavoidably untyped
-    /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call -- monkey-patch 3-deep prototype, unavoidably untyped */
     const proto = Object.getPrototypeOf(Object.getPrototypeOf(Object.getPrototypeOf(editMode)));
     const orig = proto.getDynamicExtensions;
 
     proto.getDynamicExtensions = function (this: { app: { vault: { getConfig: (key: string) => unknown } } }) {
       const exts: Array<{ value?: string }> = orig.call(this);
-      /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */
+      /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call -- end of untyped prototype access */
       if (!this.app.vault.getConfig('useTab')) {
         const tabSize = this.app.vault.getConfig('tabSize') as number;
         if (tabSize !== 4) {
